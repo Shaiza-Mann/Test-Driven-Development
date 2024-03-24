@@ -85,12 +85,16 @@ function createApp(database) {
   function isHoliday(date) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
-      let holiday = new Date(row.holiday);
+      //let holiday = new Date(row.holiday);
+      let holiday = Temporal.PlainDate.from(row.holiday); //change for 4th commit
       if (
         date &&
-        date.getFullYear() === holiday.getFullYear() &&
-        date.getMonth() === holiday.getMonth() &&
-        date.getDate() === holiday.getDate()
+        //date.getFullYear() === holiday.getFullYear() &&
+        //date.getMonth() === holiday.getMonth() &&
+        //date.getDate() === holiday.getDate()
+        date.year === holiday.year && //change for 4th commit
+        date.month === holiday.month && //change for 4th commit
+        date.day === holiday.day //change for 4th commit
       ) {
         return true;
       }
